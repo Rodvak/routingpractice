@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+import { useParams } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 function App() {
+
+const Home = () => {
   return (
+    
+    <span>Welcome</span>
+  )
+}
+
+const Number = () => {
+  const {number} = useParams();
+  return (
+
+    <span>The number is: {number}</span>
+  )
+}
+
+const Word = () => {
+  const {word, color, background} = useParams();
+  return (
+    
+    <div>
+      <span style={{ color: color, backgroundColor: background}}>The number is: {word}</span>
+    </div>
+  )
+}
+
+
+  return (
+
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      
+        <Routes>
+
+          <Route path='/home' element={ <Home/> } />
+          <Route path='/:number' element={ <Number/> } />
+          <Route path='/:word/:color/:background' element={ <Word/> } />
+
+        </Routes>
+
+      </BrowserRouter>
     </div>
   );
 }
